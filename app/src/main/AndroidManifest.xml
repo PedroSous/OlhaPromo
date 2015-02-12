@@ -21,6 +21,7 @@
         <activity android:name=".MeusAlertas"/>
         <activity android:name=".ListaCategorias"/>
         <activity android:name=".Cadastros_Produto"/>
+        <activity android:name=".Confirmacao_cadastro"/>
     </application>
 
 </manifest>

@@ -31,6 +31,7 @@ public class ListaCategorias extends Activity implements AdapterView.OnItemClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.categoria);
         Intent it =getIntent();
+
         FrameLayout cate = (FrameLayout) findViewById(R.id.categoria);
         if(it.getBooleanExtra("opcao",equals(true)))  {
 
