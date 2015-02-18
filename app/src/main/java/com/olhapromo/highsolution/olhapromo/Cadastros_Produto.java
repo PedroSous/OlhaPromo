@@ -129,7 +129,7 @@ public class Cadastros_Produto extends Activity implements View.OnClickListener,
             }
         });
 
-        
+
         //Recebe VALOR
 
         EditText editText = (EditText) findViewById(R.id.valor);

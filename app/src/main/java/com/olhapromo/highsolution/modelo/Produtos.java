@@ -5,7 +5,7 @@ package com.olhapromo.highsolution.modelo;
  */
 public abstract class Produtos {
     private int id;
-    private String nome;
+
     private String marca;
     private String processador;
     private String memoria;
@@ -14,11 +14,11 @@ public abstract class Produtos {
 
 
 
-    public Produtos(int id, String nome, String marca, String processador,
+    public Produtos(int id, String marca, String processador,
                     String memoria, String valor) {
         super();
         this.id = id;
-        this.nome = nome;
+
         this.marca = marca;
         this.processador = processador;
         this.memoria = memoria;
@@ -35,13 +35,6 @@ public abstract class Produtos {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public String getMarca() {
         return marca;
