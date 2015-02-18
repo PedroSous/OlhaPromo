@@ -7,8 +7,8 @@ public class Notebook  extends Produtos {
 
     private String hd;
 
-    public Notebook(int id, String nome, String marca, String processador, String memoria, String valor, String hd) {
-        super(id, nome, marca, processador, memoria, valor);
+    public Notebook(int id, String marca, String processador, String memoria, String valor, String hd) {
+        super(id, marca, processador, memoria, valor);
         this.hd = hd;
     }
 

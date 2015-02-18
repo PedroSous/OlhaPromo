@@ -39,7 +39,7 @@ public class NotebookDAO {
             // estrutura para inserir notebook  no webserver ----
             SoapObject note = new SoapObject(NAMESPACE, "notebook");
             note.addProperty("id", notebook.getId());
-            note.addProperty("nome", notebook.getNome());
+
             note.addProperty("marca", notebook.getMarca());
             note.addProperty("procesador", notebook.getProcessador());
             note.addProperty("memoria", notebook.getMemoria());
@@ -106,7 +106,7 @@ public class NotebookDAO {
     //Excluir por ID -----------
     public boolean excluirNotebook(int id){
 
-        return excluirNotebook(new Notebook(id, "", "", "", "", "", ""));
+        return excluirNotebook(new Notebook(id, "", "", "", "", ""));
     }
 
 
