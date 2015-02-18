@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.olhapromo.highsolution.Adaptador.MascaraMonetaria;
 import com.olhapromo.highsolution.Controlado.NotebookDAO;
 import com.olhapromo.highsolution.modelo.Notebook;
 import com.olhapromo.highsolution.modelo.Produtos;
@@ -23,6 +24,8 @@ import java.util.logging.LogRecord;
 
 /**
  * Created by Pedro on 07/02/2015.
+ * Está classe é utilizada para buscar produtos e criar alertas de produtos
+ *
  */
 public class Cadastros_Produto extends Activity implements View.OnClickListener, Runnable {
 
@@ -41,7 +44,7 @@ public class Cadastros_Produto extends Activity implements View.OnClickListener,
     private String[]tablet = new String[]{"Dell","HP","Lenovo","Samsung", "Positivo"};
     private String[]smartphone = new String[]{"LG","Motorola","Lenovo", "Nokia","Samsung","Sony"};
 
-    //Processadore
+    //Processador
     private String[]processador = new String[]{"Processador","I3","I5","I7"};
 
     // Memoria
@@ -65,8 +68,8 @@ public class Cadastros_Produto extends Activity implements View.OnClickListener,
         final Spinner process = (Spinner)findViewById(R.id.processa);
         final Spinner memoria = (Spinner)findViewById(R.id.memoria);
         final Spinner harddisc = (Spinner)findViewById(R.id.hd);
-        // deve receber a categoria da pagina anterior
 
+        // deve receber a categoria da pagina anterior
         ArrayAdapter adaptador = new ArrayAdapter<String>(this,R.layout.spinner_item_marca, notebook);
         ArrayAdapter adaptador_processador = new ArrayAdapter<String>(this,R.layout.spinner_item_marca, processador);
         ArrayAdapter adaptador_memoria = new ArrayAdapter<String>(this,R.layout.spinner_item_marca, memor);
@@ -80,8 +83,8 @@ public class Cadastros_Produto extends Activity implements View.OnClickListener,
         memoria.setAdapter(adaptador_memoria);
         harddisc.setAdapter(adaptador_hd);
 
-        //Selecionar alguma marca
 
+        //Recebe Marca Selecionada
         marcas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -92,7 +95,7 @@ public class Cadastros_Produto extends Activity implements View.OnClickListener,
 
             }
         });
-
+        //Recebe Processador Selecionado
         process.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -103,7 +106,7 @@ public class Cadastros_Produto extends Activity implements View.OnClickListener,
 
             }
         });
-
+        //Recebe Memoria Selecionada
         memoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -114,6 +117,7 @@ public class Cadastros_Produto extends Activity implements View.OnClickListener,
 
             }
         });
+        //Recebe HD Selecionado
         harddisc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -125,17 +129,26 @@ public class Cadastros_Produto extends Activity implements View.OnClickListener,
             }
         });
 
-        EditText valor = (EditText) findViewById(R.id.valor);
-        // alterar para float----
-        preco = valor.getText().toString();
+        
+        //Recebe VALOR
+
+        EditText editText = (EditText) findViewById(R.id.valor);
+        editText.addTextChangedListener(new MascaraMonetaria());//utiliza a mascara para pegar o valor
+        preco = editText.getText().toString();
+
 
     }
 
-
+    /**
+     * Evento do botão cadastrar, passa os dados como paramentro para a Classe Notebook
+     * Cria uma Thread para não utilizar a principal ocasionar travamento, em AtualizarThread
+     * será passado os dados para o webserver.
+     *
+     */
     @Override
     public void onClick(View v) {
 
-       note = new Notebook(0, "Xing ling",todasMarcas, processa,memori, hds, preco);
+        note = new Notebook(0,todasMarcas,processa,memori,preco, hds);
         AtualizaThread t = new AtualizaThread();
         t.novaThread(note);
         Intent it = new Intent(Cadastros_Produto.this, Confirmacao_cadastro.class);
