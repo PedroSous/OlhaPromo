@@ -12,13 +12,20 @@ public class Notebook  extends Produtos {
         this.hd = hd;
     }
 
+    /**
+     *
+     * @return retorna a capacidade do hd do notebook
+     */
     public String getHd() {
         return hd;
     }
 
+    /**
+     *
+     * @param hd altera a capacidade do hd do produto, passando a nova capacidade como parâmetro
+     */
     public void setHd(String hd) {
         this.hd = hd;
-
     }
 
    /* @Override

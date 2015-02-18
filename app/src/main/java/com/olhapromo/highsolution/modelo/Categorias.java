@@ -11,17 +11,18 @@ public class Categorias {
     public static final int Notebook =0;
     public static final int Tablet = 1;
     public static final int Smartphone =2;
-
-
-
     public String nome;
     private final int tipo;
 
     public Categorias(String nome, int tipo){
-        this.nome =nome;
+        this.nome=nome;
         this.tipo=tipo;
     }
 
+    /**
+     *
+     * @return retorna a imagem da categoria de acordo com o item selecionado
+     */
     public int getImagem(){
         switch (tipo){
             case Notebook:

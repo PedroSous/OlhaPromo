@@ -57,6 +57,7 @@ public class Cadastros_Produto extends Activity implements View.OnClickListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cadastro_produtos);
 
+        //variavel que instancia o botao cadastrar criado no xml cadastrar.xml
         Button cadastrar = (Button) findViewById(R.id.cadastrar);
         cadastrar.setOnClickListener(this);
 
@@ -103,6 +104,7 @@ public class Cadastros_Produto extends Activity implements View.OnClickListener,
 
             }
         });
+
 
         memoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
